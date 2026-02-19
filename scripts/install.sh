@@ -1,3 +1,5 @@
 #!/bin/bash
 yum install -y httpd
-chmod +x scripts/*.sh
+
+# Make CodeDeploy scripts executable (correct path)
+chmod +x /opt/codedeploy-agent/deployment-root/*/deployment-archive/scripts/*.sh
