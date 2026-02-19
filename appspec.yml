@@ -2,15 +2,22 @@ version: 0.0
 os: linux
 
 files:
-  - source: app/
-    destination: /var/www/html/
+  - source: /
+    destination: /opt/codedeploy-agent/deployment-root/app/
 
 hooks:
   BeforeInstall:
-    - location: scripts/stop.sh
-  AfterInstall:
     - location: scripts/install.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 300
+      runas: root
+
   ApplicationStart:
     - location: scripts/start.sh
-      timeout:300
-      runas:root
+      timeout: 300
+      runas: root
+
